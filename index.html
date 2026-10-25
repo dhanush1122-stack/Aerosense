@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroSense Smart Fan Control</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="logo">✿</span>
+      <div>
+        <h2>Aero<span>Sense</span></h2>
+        <small>Smart Fan Control System</small>
+      </div>
+    </div>
+
+    <nav>
+      <a class="active" href="#dashboard">◆ Dashboard</a>
+      <a href="#environment">⚙ Settings</a>
+      <a href="#about">● About</a>
+    </nav>
+
+    <div class="sidebar-bottom">🌿 Cooler Rooms<br>　Smarter Living</div>
+  </aside>
+
+  <main class="main" id="dashboard">
+    <header class="topbar">
+      <div class="welcome">
+        <span class="sun">☀</span>
+        <div>
+          <h1 id="greeting">Good Evening!</h1>
+          <p>Smart control for a comfortable tomorrow</p>
+        </div>
+      </div>
+      <div class="top-meta">
+        <span class="online">⌁ System Online</span>
+        <span id="dateTime"></span>
+      </div>
+    </header>
+
+    <section class="metrics">
+      <article class="metric-card">
+        <div class="metric-icon temp-icon">♨</div>
+        <div><h3>Temperature</h3><strong id="temperatureMetric">28°C</strong>
+          <span class="tag">Optimal range: 24–30°C</span></div>
+      </article>
+      <article class="metric-card">
+        <div class="metric-icon humidity-icon">♦</div>
+        <div><h3>Humidity</h3><strong id="humidityMetric">62%</strong>
+          <span class="tag">Comfortable level</span></div>
+      </article>
+      <article class="metric-card">
+        <div class="metric-icon occupancy-icon">●</div>
+        <div><h3>Room Occupancy</h3><strong id="occupancyMetric" class="green-text">Detected</strong>
+          <span id="occupancyCaption">Person present in room</span></div>
+      </article>
+      <article class="metric-card">
+        <div class="metric-icon mode-icon">⚙</div>
+        <div><h3>Mode</h3><strong id="modeMetric" class="purple-text">Automatic</strong>
+          <span id="modeCaption">Adjusts based on conditions</span></div>
+      </article>
+    </section>
+
+    <div class="dashboard-grid">
+      <div class="left-column">
+        <section class="panel fan-panel">
+          <div class="fan-visual-area">
+            <div class="fan-rings"></div>
+            <div class="fan-illustration" id="fanIllustration">
+              <div class="fan-blade blade-one"></div>
+              <div class="fan-blade blade-two"></div>
+              <div class="fan-blade blade-three"></div>
+              <div class="fan-hub"></div>
+            </div>
+          </div>
+
+          <div class="fan-details">
+            <h2>Fan Status</h2>
+            <div class="fan-pill" id="fanStatus">
+              <span id="fanStatusText">FAN ON</span>
+            </div>
+            <div class="detail-block">
+              <h3>Speed</h3>
+              <div class="detail-value">
+                <span>✿</span><strong id="speedDisplay">Medium</strong>
+                <span class="speed-bars">▂▅▇</span>
+              </div>
+            </div>
+            <div class="detail-block">
+              <h3>Swing Position</h3>
+              <div class="detail-value">
+                <span>♧</span><strong id="swingDisplay">Center</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            💡 <span id="modeTip">Automatic mode: Fan speed is adjusted based on temperature and occupancy.</span>
+          </div>
+        </section>
+
+        <div class="control-cards">
+          <section class="panel mini-panel">
+            <h2>♟ Occupancy Control</h2>
+            <p>Simulate room occupancy</p>
+            <div class="two-buttons">
+              <button id="occupiedBtn" class="selected green-button">♟<br>Person Present</button>
+              <button id="emptyBtn">⇥<br>Room Empty</button>
+            </div>
+          </section>
+
+          <section class="panel mini-panel">
+            <h2>⚙ Mode Control</h2>
+            <p>Choose how the fan works</p>
+            <div class="two-buttons">
+              <button id="autoBtn" class="selected blue-button">⚙<br>Automatic</button>
+              <button id="manualBtn">♧<br>Manual</button>
+            </div>
+          </section>
+        </div>
+
+        <section class="panel manual-panel">
+          <h2>✿ Manual Controls</h2>
+          <p>Use these controls when in manual mode</p>
+          <div class="manual-controls">
+            <button class="power-on" id="fanOnBtn">⏻<br>Fan ON</button>
+            <button class="power-off" id="fanOffBtn">⏻<br>Fan OFF</button>
+            <label>Speed
+              <select id="manualSpeed">
+                <option value="1">Low</option>
+                <option value="2" selected>Medium</option>
+                <option value="3">High</option>
+              </select>
+            </label>
+            <label>Swing Position
+              <select id="swingPosition">
+                <option>Left</option>
+                <option selected>Center</option>
+                <option>Right</option>
+              </select>
+            </label>
+          </div>
+        </section>
+      </div>
+
+      <div class="right-column">
+        <section class="panel activity-panel">
+          <div class="activity-header">
+            <h2>◷ Activity Log</h2>
+            <button id="clearLogBtn">Clear Log</button>
+          </div>
+          <ul class="activity-list" id="activityLog"></ul>
+        </section>
+
+        <section class="panel environment-panel" id="environment">
+          <h2>☷ Environmental Settings</h2>
+          <label for="temperature">♨ Temperature</label>
+          <div class="range-control">
+            <input id="temperature" type="range" min="16" max="40" value="28">
+            <output id="temperatureLabel">28°C</output>
+          </div>
+
+          <label for="humidity">♦ Humidity</label>
+          <div class="range-control purple-range">
+            <input id="humidity" type="range" min="20" max="90" value="62">
+            <output id="humidityLabel">62%</output>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer id="about">💡 AeroSense is designed to provide comfort, save energy and create smarter living spaces.</footer>
+    <p class="note">Simulation only — physical sensors are not connected.</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
